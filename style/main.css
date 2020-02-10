@@ -233,8 +233,16 @@ main section.filter details .card label {
   display: block;
 }
 
+main section.filter details .card .labelCheck {
+  display: inline-block;
+}
+
 main section.filter details .card input {
   margin-top: 0.1em;
   width: 100%;
+}
+
+main section.filter details .card input[type=checkbox] {
+  width: auto;
 }
 /*# sourceMappingURL=main.css.map */

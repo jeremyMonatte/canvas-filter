@@ -14,6 +14,7 @@ if (window.addEventListener) {
     .querySelector("#aspect input")
     .addEventListener("change", getTof, true);
   document.querySelector(".sobel").addEventListener("click", drawCanv, true);
+  document.querySelector(".netete").addEventListener("click", drawCanv, true);
   document.querySelector(".reset").addEventListener("click", reset, true);
   document
     .querySelector("input.rotate")
@@ -29,6 +30,7 @@ if (window.addEventListener) {
 } else if (window.attachEvent) {
   document.querySelector("#aspect input").attachEvent("change", getTof);
   document.querySelector(".sobel").attachEvent("click", drawCanv);
+  document.querySelector(".netete").attachEvent("click", drawCanv);
   document.querySelector(".reset").attachEvent("click", reset);
   document.querySelector("input.rotate").attachEvent("change", drawCanv);
   var textform = document.querySelectorAll(".texte input");
@@ -222,6 +224,9 @@ function drawCanv() {
   if (document.querySelector("input[name = sobel]").checked) {
     addMatrice(matriceSobelHoriz);
     addMatrice(matriceSobelVert);
+  }
+  if (document.querySelector("input[name = netete]").checked) {
+    addMatrice(matricenetete);
   }
   if (typeof text == "object" && text != null) {
     text.print(ctx);
