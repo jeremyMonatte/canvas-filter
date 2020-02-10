@@ -20,7 +20,8 @@ class Texte {
     posy = 10,
     taille = 12,
     color = "#000",
-    fontFamily = "sans-serif"
+    fontFamily = "sans-serif",
+    align = "start"
   ) {
     this.text = text;
     this.posx = posx;

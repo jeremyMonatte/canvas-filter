@@ -18,18 +18,26 @@ if (window.addEventListener) {
   document
     .querySelector("input.rotate")
     .addEventListener("change", drawCanv, true);
-  var textform = document.querySelectorAll(".texte input, .texte select");
+  var textform = document.querySelectorAll(".texte input");
   textform.forEach(inputText => {
     inputText.addEventListener("input", addText, true);
+  });
+  var textformSelect = document.querySelectorAll(".texte select");
+  textformSelect.forEach(selectText => {
+    selectText.addEventListener("change", addText, true);
   });
 } else if (window.attachEvent) {
   document.querySelector("#aspect input").attachEvent("change", getTof);
   document.querySelector(".sobel").attachEvent("click", drawCanv);
   document.querySelector(".reset").attachEvent("click", reset);
   document.querySelector("input.rotate").attachEvent("change", drawCanv);
-  var textform = document.querySelectorAll(".texte input, .texte select");
+  var textform = document.querySelectorAll(".texte input");
   textform.forEach(inputText => {
     inputText.attachEvent("input", addText);
+  });
+  var textformSelect = document.querySelectorAll(".texte select");
+  textformSelect.forEach(selectText => {
+    selectText.attachEvent("change", addText);
   });
 }
 
@@ -66,7 +74,6 @@ function initCanvas() {
       image.displayHeight * (canvas.height / image.displayHeight);
   }
   drawCanv();
-  console.log("initialisation");
 }
 
 /**
@@ -188,12 +195,18 @@ function getPixelByCoord(x, y, width, array) {
 function addText() {
   text = new Texte(
     document.querySelector(".texte input[name=text]").value,
-    document.querySelector(".texte input[name=posx]").value*image.displayWidth/100,
-    document.querySelector(".texte input[name=posy]").value*image.displayHeight/100,
+    (document.querySelector(".texte input[name=posx]").value *
+      image.displayWidth) /
+      100,
+    (document.querySelector(".texte input[name=posy]").value *
+      image.displayHeight) /
+      100,
     document.querySelector(".texte input[name=size]").value,
     document.querySelector(".texte input[name=color]").value,
     document.querySelector(".texte select#font").value,
+    document.querySelector(".texte select#align").value
   );
+  drawCanv();
 }
 function drawCanv() {
   if (document.querySelector("input[name=rotate]").value != 0) {
@@ -208,13 +221,16 @@ function drawCanv() {
   ctx.drawImage(image, 0, 0, image.displayWidth, image.displayHeight);
   if (document.querySelector("input[name = sobel]").checked) {
     addMatrice(matriceSobelHoriz);
+    addMatrice(matriceSobelVert);
   }
-  if (typeof text == "object") {
+  if (typeof text == "object" && text != null) {
     text.print(ctx);
   }
 }
 function reset() {
   document.querySelector("input[name=rotate]").value = 0;
+  document.querySelector("input[name=text]").value = "";
+  text = null;
   filtres = "";
   initCanvas();
 }
