@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="fr_FR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Desc site" />
+    <meta name="keywords" content="keywords" />
+    <meta name="author" content="Jérémy Monatte" />
+    <title>Title</title>
+    <link rel="stylesheet" href="style/main.css" />
+
+    <meta property="og:url" content="url" />
+    <meta property="og:type" content="type of the site" />
+    <meta property="og:title" content="Title" />
+    <meta property="og:description" content="Desc site" />
+    <meta property="og:image" content="img/main.jpg" />
+    <meta property="og:locale" content="fr_FR" />
+  </head>
+  <body>
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.svg" />
+    <main>
+      <section id="aspect">
+        <canvas id="canvas"></canvas>
+        <div class="addImg">
+          <input
+            type="file"
+            id="avatar"
+            name="avatar"
+            accept="image/png, image/jpeg"
+          />
+        </div>
+      </section>
+      <section class="filter">
+        <details class="rangeContainer">
+          <summary>Filtre</summary>
+          <div class="card">
+            <label for="blur">Blur</label>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              id="blur"
+              name="blur"
+            />
+          </div>
+          <div class="card">
+            <label for="brightness">Brightness</label>
+            <input
+              type="range"
+              min="0"
+              max="200"
+              id="brightness"
+              name="brightness"
+            />
+          </div>
+          <div class="card">
+            <label for="contrast">Contrast</label>
+            <input
+              type="range"
+              min="0"
+              max="200"
+              id="contrast"
+              name="contrast"
+            />
+          </div>
+          <div class="card">
+            <label for="grayscale">Grayscale</label>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              id="grayscale"
+              name="grayscale"
+            />
+          </div>
+          <div class="card">
+            <label for="hue-rotate">Hue-rotate</label>
+            <input
+              type="range"
+              min="0"
+              max="360"
+              value="0"
+              id="hue-rotate"
+              name="hue-rotate"
+            />
+          </div>
+          <div class="card">
+            <label for="invert">Invert</label>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              id="invert"
+              name="invert"
+            />
+          </div>
+          <div class="card">
+            <label for="opacity">Opacity</label>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="100"
+              id="opacity"
+              name="opacity"
+            />
+          </div>
+          <div class="card">
+            <label for="saturate">Saturate</label>
+            <input
+              type="range"
+              min="0"
+              max="200"
+              id="saturate"
+              name="saturate"
+            />
+          </div>
+          <div class="card">
+            <label for="sepia">Sepia</label>
+            <input
+              type="range"
+              min="0"
+              max="100"
+              value="0"
+              id="sepia"
+              name="sepia"
+            />
+          </div>
+        </details>
+        <details class="checkboxs">
+          <summary>Autre modification</summary>
+                  <label for="sobel" class="sobel">
+            Filtre de sobel, Mise en avant des contours
+            <input type="checkbox" name="sobel" />
+          </label>
+        </details>
+
+        <button class="reset">Reset</button>
+        <a id="download" download="">
+          <button type="button" onClick="download()">Download</button>
+        </a>
+      </section>
+    </main>
+
+    <script type="text/javascript" src="script/class.js"></script>
+    <script type="text/javascript" src="script/matrice.js"></script>
+    <script type="text/javascript" src="script/main.js"></script>
+  </body>
+</html>

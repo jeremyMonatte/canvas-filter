@@ -1,0 +1,67 @@
+// COMPOSANT DE RANGE SLIDER
+
+// Mixin pour faciliter l'adaptation du rond du range slider sous tout les browsers
+@mixin rond-for-slider() {
+  width: 2em;
+  height: 2em;
+  margin-left: 0em;
+  margin-top: 0;
+  background-color: $c-fond;
+  border-radius: 1em;
+  border: 2px solid $c-contrast;
+  cursor: pointer;
+  box-shadow: 0.5em 0px $c-fond, -0.5em 0px $c-fond;
+}
+
+// Mixin pour faciliter l'adaptation de la barre du range slider sous tout les browsers
+@mixin barre-slider {
+  width: 100%;
+  cursor: pointer;
+  height: 1em;
+  border-bottom: 2px solid $c-contrast;
+  background-color: transparent;
+}
+.rangeContainer {
+  margin: 0 auto;
+  input[type="range"] {
+    font-size: 0.8em;
+    padding: 1em 0;
+    margin: 0.1em 0;
+    transition: inherit;
+    width: 100%;
+    display: block;
+    background-color: transparent;
+    cursor: pointer;
+    -webkit-appearance: none;
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+    }
+    &:focus {
+      outline: none;
+    }
+    &::-ms-track {
+      background: transparent;
+      border-color: transparent;
+      color: transparent;
+    }
+    &::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      @include rond-for-slider();
+    }
+    &::-moz-range-thumb {
+      @include rond-for-slider();
+    }
+
+    &::-ms-thumb {
+      @include rond-for-slider();
+    }
+
+    &::-webkit-slider-runnable-track {
+      @include barre-slider();
+    }
+
+    &::-moz-range-track {
+      @include barre-slider();
+    }
+  }
+}
