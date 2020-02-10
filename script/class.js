@@ -13,3 +13,27 @@ class MatricCoef {
     this.posy = posy;
   }
 }
+class Texte {
+  constructor(
+    text,
+    posx = 10,
+    posy = 10,
+    taille = 12,
+    color = "#000",
+    fontFamily = "sans-serif"
+  ) {
+    this.text = text;
+    this.posx = posx;
+    this.posy = posy;
+    this.taille = taille;
+    this.color = color;
+    this.fontFamily = fontFamily;
+    this.align = align;
+  }
+  print(ctx) {
+    ctx.font = this.taille + "px "+ this.fontFamily;
+    ctx.fillStyle = this.color;
+    ctx.textAlign=this.align;
+    ctx.fillText(this.text, this.posx, this.posy);
+  }
+}

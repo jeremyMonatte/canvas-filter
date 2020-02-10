@@ -131,12 +131,81 @@
             />
           </div>
         </details>
-        <details class="checkboxs">
-          <summary>Autre modification</summary>
-                  <label for="sobel" class="sobel">
-            Filtre de sobel, Mise en avant des contours
+        <details class="effets">
+          <summary>Autre effets</summary>
+          <div class="card">
+            <label for="sobel" class="sobel labelCheck">
+              Filtre de sobel, Mise en avant des contours
+            </label>
             <input type="checkbox" name="sobel" />
-          </label>
+          </div>
+          <div class="card">
+            <label for="rotate" class="rotate">
+              rotation
+            </label>
+            <input
+              type="range"
+              class="rotate"
+              min="0"
+              max="360"
+              value="0"
+              name="rotate"
+            />
+          </div>
+        </details>
+        <details class="texte">
+          <summary>Texte</summary>
+          <div class="card">
+            <label for="text" class="text">
+              Texte
+            </label>
+            <input type="text" name="text" />
+          </div>
+          <div class="card">
+            <label for="posx">
+              position X
+            </label>
+            <input type="range" min="0" max="100" value="50" name="posx" />
+          </div>
+          <div class="card">
+            <label for="posy">
+              position Y
+            </label>
+            <input type="range" min="0" max="100" value="50" name="posy" />
+          </div>
+          <div class="card">
+            <label for="size">
+              Taille
+            </label>
+            <input type="range" min="0" max="100" value="12" name="size" />
+          </div>
+          <div class="card">
+            <label for="color">
+              Couleur
+            </label>
+            <input type="color" name="color" />
+          </div>
+          <div class="card">
+            <label for="font">
+              Police :
+            </label>
+            <select id="font">
+              <option value="sans-serif">Sans-serif</option>
+              <option value="serif">serif</option>
+              <option value="cursive">cursive</option>
+              <option value="monospace">monospace</option>
+            </select>
+          </div>
+          <div class="card">
+            <label for="align">
+              Alignement :
+            </label>
+            <select id="align">
+              <option value="left">Left</option>
+              <option value="center">Center</option>
+              <option value="right">Right</option>
+            </select>
+          </div>
         </details>
 
         <button class="reset">Reset</button>

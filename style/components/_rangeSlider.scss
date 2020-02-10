@@ -21,47 +21,45 @@
   border-bottom: 2px solid $c-contrast;
   background-color: transparent;
 }
-.rangeContainer {
-  margin: 0 auto;
-  input[type="range"] {
-    font-size: 0.8em;
-    padding: 1em 0;
-    margin: 0.1em 0;
-    transition: inherit;
-    width: 100%;
-    display: block;
-    background-color: transparent;
-    cursor: pointer;
+
+input[type="range"] {
+  font-size: 0.8em;
+  padding: 1em 0;
+  margin: 0.1em 0;
+  transition: inherit;
+  width: 100%;
+  display: block;
+  background-color: transparent;
+  cursor: pointer;
+  -webkit-appearance: none;
+  &::-webkit-slider-thumb {
     -webkit-appearance: none;
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-    }
-    &:focus {
-      outline: none;
-    }
-    &::-ms-track {
-      background: transparent;
-      border-color: transparent;
-      color: transparent;
-    }
-    &::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      @include rond-for-slider();
-    }
-    &::-moz-range-thumb {
-      @include rond-for-slider();
-    }
+  }
+  &:focus {
+    outline: none;
+  }
+  &::-ms-track {
+    background: transparent;
+    border-color: transparent;
+    color: transparent;
+  }
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    @include rond-for-slider();
+  }
+  &::-moz-range-thumb {
+    @include rond-for-slider();
+  }
 
-    &::-ms-thumb {
-      @include rond-for-slider();
-    }
+  &::-ms-thumb {
+    @include rond-for-slider();
+  }
 
-    &::-webkit-slider-runnable-track {
-      @include barre-slider();
-    }
+  &::-webkit-slider-runnable-track {
+    @include barre-slider();
+  }
 
-    &::-moz-range-track {
-      @include barre-slider();
-    }
+  &::-moz-range-track {
+    @include barre-slider();
   }
 }

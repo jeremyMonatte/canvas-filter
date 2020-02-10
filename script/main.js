@@ -5,7 +5,7 @@ var image = new Image();
 var ctx;
 var canvas;
 var filtres;
-
+var text;
 /**
  * INITIALISATION EVENT
  * */
@@ -15,10 +15,22 @@ if (window.addEventListener) {
     .addEventListener("change", getTof, true);
   document.querySelector(".sobel").addEventListener("click", drawCanv, true);
   document.querySelector(".reset").addEventListener("click", reset, true);
+  document
+    .querySelector("input.rotate")
+    .addEventListener("change", drawCanv, true);
+  var textform = document.querySelectorAll(".texte input, .texte select");
+  textform.forEach(inputText => {
+    inputText.addEventListener("input", addText, true);
+  });
 } else if (window.attachEvent) {
   document.querySelector("#aspect input").attachEvent("change", getTof);
   document.querySelector(".sobel").attachEvent("click", drawCanv);
   document.querySelector(".reset").attachEvent("click", reset);
+  document.querySelector("input.rotate").attachEvent("change", drawCanv);
+  var textform = document.querySelectorAll(".texte input, .texte select");
+  textform.forEach(inputText => {
+    inputText.attachEvent("input", addText);
+  });
 }
 
 /**
@@ -87,12 +99,14 @@ function readURL(input) {
  * EXPORT DE L'IMAGE
  * */
 function download() {
-  var download = document.getElementById("download");
-  var dlImage = document
-    .getElementById("canvas")
-    .toDataURL("image/png")
-    .replace("image/png", "image/octet-stream");
-  download.setAttribute("href", image);
+  var download = document.getElementById("export");
+  var image = canvas.toDataURL();
+  var aLink = document.getElementById("download");
+  var evt = document.createEvent("HTMLEvents");
+  evt.initEvent("click");
+  aLink.download = "image.jpg";
+  aLink.href = image;
+  console.log("i");
 }
 
 /**
@@ -171,14 +185,36 @@ function getPixelByCoord(x, y, width, array) {
   }
   return new Pixel();
 }
+function addText() {
+  text = new Texte(
+    document.querySelector(".texte input[name=text]").value,
+    document.querySelector(".texte input[name=posx]").value*image.displayWidth/100,
+    document.querySelector(".texte input[name=posy]").value*image.displayHeight/100,
+    document.querySelector(".texte input[name=size]").value,
+    document.querySelector(".texte input[name=color]").value,
+    document.querySelector(".texte select#font").value,
+  );
+}
 function drawCanv() {
+  if (document.querySelector("input[name=rotate]").value != 0) {
+    ctx.setTransform(1, 0, 0, 1, 0, 0);
+    ctx.translate(image.displayWidth / 2, image.displayHeight / 2);
+    ctx.rotate(
+      (document.querySelector("input[name=rotate]").value * Math.PI) / 180
+    );
+    ctx.translate(-image.displayWidth / 2, -image.displayHeight / 2);
+  }
   ctx.filter = filtres;
   ctx.drawImage(image, 0, 0, image.displayWidth, image.displayHeight);
   if (document.querySelector("input[name = sobel]").checked) {
     addMatrice(matriceSobelHoriz);
   }
+  if (typeof text == "object") {
+    text.print(ctx);
+  }
 }
 function reset() {
+  document.querySelector("input[name=rotate]").value = 0;
   filtres = "";
   initCanvas();
 }
